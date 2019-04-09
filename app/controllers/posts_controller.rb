@@ -50,6 +50,7 @@ end
 
 def show
   @post = Post.find_by(id:params[:id])
+  @all_comments = @post.comments.include(:author)
   render :show
 end
 
