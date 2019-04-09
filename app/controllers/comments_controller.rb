@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
+  before_action :redirect
+  
   def new
     @comment = Comment.new
+    @comment.post_id = params[:post_id]
     render :new
   end
 
