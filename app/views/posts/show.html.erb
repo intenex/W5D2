@@ -10,6 +10,11 @@
 
 <a href="<%=new_post_comment_url%>">Make new comment</a>
 
-<% @post.comments.each do |comment| %>
-  <%= comment.content %>
+<ul>
+<% @post.comments.where(parent_comment_id: nil).each do |comment| %>
+  <li>
+    <%= comment.content %><br>
+    <a href="<%=comment_url(comment)%>">See comment and replies</a>
+  </li>
 <% end %>
+</ul>

@@ -1,0 +1,28 @@
+
+
+<p>Parent comment: <%= @comment.content %></p>
+
+<ul>
+<% @comment.child_comments.each do |comment| %>
+  <li>
+    <%= comment.content %><br>
+    <a href="<%=comment_url(comment)%>">See comment and replies</a>
+  </li>
+<% end %>
+</ul>
+
+<h1>Reply to comment</h1>
+
+<form action="<%=comments_url%>" method="post">
+
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <input type="hidden" name="comment[post_id]" value="<%=@comment.post_id%>">
+  <input type="hidden" name="comment[parent_comment_id]" value="<%=@comment.id%>">
+
+  <label>Content
+    <input type="text" name="comment[content]">
+  </label>
+
+  <input type="submit" value="Create a new comment">
+
+</form>
