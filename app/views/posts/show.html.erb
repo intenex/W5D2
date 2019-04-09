@@ -1,0 +1,11 @@
+<h1><%= @post.title %></h1>
+<br/><br/>
+<% if @post.url %>
+  <a href="<%=@post.url%>"><%= @post.url %></a>
+  <br/><br/>
+<% end %>
+<% if @post.content %>
+  <%= @post.content %>
+<% end %>
+
+<a href="<%=new_post_comment_url%>">Make new comment</a>
