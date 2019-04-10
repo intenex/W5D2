@@ -1,9 +1,24 @@
+<!--
+<%# if comment.child_comments %>
+  <ul>
+    <%# comment.child_comments.each do |child_comment| %>
+      <li><%#= child_comment.content %><br>
+      <%#= render "comment", comment: child_comment %>
+      </li>
+    <%# end %>
+  </ul>
+<%# end %>
+-->
+
 <% if comment.child_comments %>
   <ul>
-    <% comment.child_comments.each do |child_comment| %>
+    <% all_comments[comment.id].each do |child_comment| %>
+    <% if child_comment.parent_comment_id == comment.id %>
       <li><%= child_comment.content %><br>
-      <%= render "comment", comment: child_comment %>
+          <%= child_comment.created_at %>
+      <%= render "comment", comment: child_comment,all_comments:all_comments %>
       </li>
+    <% end %>
     <% end %>
   </ul>
 <% end %>

@@ -21,4 +21,13 @@ class Post < ApplicationRecord
   has_many :subs, through: :post_subs, source: :sub
   has_many :comments
   
+  def comments_by_parent_id
+    id_hash = Hash.new {|h,k| h[k] = []}
+
+    comments.each do |comment|
+      id_hash[comment.parent_comment_id] << comment
+    end
+    return id_hash
+  end
+
 end

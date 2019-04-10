@@ -4,6 +4,7 @@
 <% @comment.child_comments.each do |comment| %>
   <li>
     <%= comment.content %><br>
+    <%= comment.parent_comment_id %>
     <a href="<%=comment_url(comment)%>">See comment and replies</a>
   </li>
 <% end %>

@@ -11,11 +11,13 @@
 <a href="<%=new_post_comment_url(@post)%>">Make new comment</a>
 
 <ul>
-<#% @post.comments.where(parent_comment_id: nil).each do |comment| %>
-
+<%# @post.comments.where(parent_comment_id: nil).each do |comment| %>
+<% @all_comments[nil].each do |comment| %>
   <li>
     <%= comment.content %><br>
-      <%= render 'comment', comment: comment %>
+    <%= comment.created_at %><br>
+    <%= comment.id %>
+    <%= render 'comment', comment: comment, all_comments: @all_comments %>
     <a href="<%=comment_url(comment)%>">See comment and replies</a>
   </li>
 <% end %>
